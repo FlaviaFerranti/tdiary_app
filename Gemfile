@@ -6,8 +6,12 @@ ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
+#jquery
+gem 'jquery-rails', '~> 4.3.1'
+gem 'jquery-ui-rails',  '~> 5.0.0'
 #bootstrap per i css
 gem 'bootstrap-sass', '~> 3.2.0.0'
+gem 'mini_racer'
 #ci assicuriamo che un hacker non riesca ad effettuare il login al sito
 gem 'bcrypt', '~> 3.1.7'
 # Use sqlite3 as the database for Active Record
