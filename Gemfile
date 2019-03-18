@@ -13,6 +13,11 @@ gem 'jquery-ui-rails',  '~> 5.0.0'
 gem 'bootstrap-sass', '~> 3.2.0.0'
 #ci assicuriamo che un hacker non riesca ad effettuare il login al sito
 gem 'bcrypt', '~> 3.1.7'
+#creazione utenti finti
+gem 'faker', '~>1.4.2'
+#creare la paginazione per la lista di utenti
+gem 'will_paginate', '~>3.0.7'
+gem 'bootstrap-will_paginate', '~>0.0.10'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
