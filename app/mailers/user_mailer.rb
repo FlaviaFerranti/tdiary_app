@@ -3,11 +3,11 @@ class UserMailer < ApplicationMailer
 
   def account_activation(user)
     @user = user
-    mail to: user.email,from: "traveldiarywebapp@gmail.com", subject: "Account attivato"
+    mail to: user.email,from: "traveldiarywebapp@gmail.com", subject: "Attiva account"
   end
 
   def password_reset(user)
     @user = user
-    mail to: user.email,from: "traveldiarywebapp@gmail.com", subject: "Password cambiata"
+    mail to: user.email,from: "traveldiarywebapp@gmail.com", subject: "Cambia password"
   end
 end
