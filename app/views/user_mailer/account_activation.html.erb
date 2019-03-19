@@ -1,0 +1,12 @@
+<h1>Travel Diary</h1>
+
+<p>
+    Ciao <%= @user.name %>,
+</p>
+
+<p>
+    Benvenuto su Travel Diary! Clicca sul link qui sotto per attivare il tuo account:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+email: @user.email) %>
