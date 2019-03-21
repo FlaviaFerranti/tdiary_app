@@ -1,5 +1,5 @@
 class TravelsController < ApplicationController
-before_action :logged_in_user, only: [:create, :destroy, :show]
+before_action :logged_in_user, only: [:create, :destroy, :edit]
 before_action :correct_user, only: :destroy
 
     def create
@@ -13,8 +13,18 @@ before_action :correct_user, only: :destroy
         end
     end
 
-    def show
-      @travel=Travel.find(params[:id])
+    def edit
+        @travel = Travel.find(params[:id])
+    end
+
+    def update
+        @travel = Travel.find(params[:id])
+        if @travel.update_attributes(travel_params)
+            flash[:success] = "Travel updated"
+            redirect_to (current_user)
+        else
+            render 'edit'
+        end
     end
 
     def destroy
@@ -26,7 +36,7 @@ before_action :correct_user, only: :destroy
     private
 
     def travel_params
-    params.require(:travel).permit(:title, :images, :description)
+    params.require(:travel).permit(:title, :images, :description, :remove_images)
     end
 
     def correct_user
