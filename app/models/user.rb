@@ -88,6 +88,7 @@ class User < ApplicationRecord
     #restituisce true se l'utente corrente segue l'altro utente
     def following?(other_user)
         following.include?(other_user)
+    end
 
     private
 
