@@ -7,5 +7,18 @@
                 <%= @user.name %>
             </h1>
         </section>
+        <section class="stats">
+            <%= render 'shared/stats' %>
+        </section
     </aside>
+    <div class="col-md-8">
+        <% render 'follow_form' if logged_in? %>
+        <% if @user.travels.any? %>
+            <h3>Travels (<%= @user.travels.count %>)</h3>
+            <ol class="travels">
+                <%= render @travels %>
+            </ol>
+            <%= will_paginate @travels %>
+        <% end %>
+    </div>
 </div>

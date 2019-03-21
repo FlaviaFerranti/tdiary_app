@@ -9,6 +9,7 @@ class User < ApplicationRecord
       		uniqueness: { case_sensitive: false}
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
+    has_many :travels, dependent: :destroy   # per distruggere i travel se un utente viene rimosso
 
     def self.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -59,6 +60,10 @@ class User < ApplicationRecord
 
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
+    end
+
+    def feed
+        Travel.where("user_id = ?", id)
     end
 
     private

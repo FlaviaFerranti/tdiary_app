@@ -1,0 +1,16 @@
+<li id="travel-<%= travel.id %>">
+<%= link_to gravatar_for(travel.user, size: 50), travel.user %>
+<span class="user"><%= link_to travel.user.name, travel.user %></span>
+<span class="title"><%= travel.title %></span>
+<span class="content"><%= travel.description %>
+<%= image_tag travel.images.url if travel.images? %></span>
+<span class="timestamp">
+Posted <%= time_ago_in_words(travel.created_at) %> ago.
+
+<% if current_user?(travel.user) %>
+<%= link_to "delete", travel, method: :delete,
+data: { confirm: "You sure?" } %>
+<%end%>
+
+</span>
+</li>
