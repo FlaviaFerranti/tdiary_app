@@ -9,10 +9,14 @@ class User < ApplicationRecord
       		uniqueness: { case_sensitive: false}
 	has_secure_password
 	validates :password, length: { minimum: 6 }, allow_blank: true
+
     has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
     has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships, source: :follower
+
+    has_many :travels, dependent: :destroy   # per distruggere i travel se un utente viene rimosso
+
 
     def self.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -68,7 +72,7 @@ class User < ApplicationRecord
     # Returns a user's status feed.
     def feed
         following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-        Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+        Travel.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
     end
 
     #Seguire un utente
@@ -84,7 +88,6 @@ class User < ApplicationRecord
     #restituisce true se l'utente corrente segue l'altro utente
     def following?(other_user)
         following.include?(other_user)
-    end
 
     private
 
