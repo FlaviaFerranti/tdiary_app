@@ -3,40 +3,32 @@
 <h1>Modifica il tuo travel </h1>
 <%= form_for(@travel, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
   <%= f.label ' Title' %><br>
-  <%= f.text_field :title %><br>
+  <%= f.text_field :title, class: 'form-control'%><br>
 
   <%= f.label 'Description' %><br>
-  <%= f.text_area :description %><br>
+  <%= f.text_area :description, class: 'form-control'%><br>
 
-
-  <% if @travel.images? %>
-    <%= image_tag @travel.images.url %>
-    <div>
-      <%= label_tag :remove_images do %>
-        Remove image
-        <%= f.check_box :remove_images %>
-      <% end %>
-    </div>
-  <%else%>
-      <%= f.label 'Seleziona immagine' %><br>
-      <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png' %>
-
-  <% end %>
-  <% if @travel.multiples? %>
-      <% @travel.multiples.each do |multiple| %>
-          <%= image_tag multiple.url %>
-      <% end %>
-      <%= label_tag :remove_multiples do %>
-        Remove images
-        <%= f.check_box :remove_multiples %>
-      <% end %>
-  <% end %>
+  <div>
+      <% @travel.multiples.each_with_index do |multiple, index| %>
+          <%= image_tag(multiple.thumb.url) %>
+          <%= link_to "Delete", travel_multiple_path(@travel, index), :method => :delete, data: { confirm: "Are you sure you want to delete this image?" } %>
+      <%end%>
+  </div
   <br>
-
-  <%= f.label :multiples, "Seleziona una o più immagini" %>
-  <%= f.file_field :multiples, multiple: true %>
-
-
-  <%= f.submit "Salva", class: "btn btn-primary", id:"bottone"%>
+  <br>
+  <%= f.submit "Salva le modifiche al testo", class: "btn btn-primary", id:"bottone"%>
 <% end %>
+
+<br>
+
+<%= form_for @travel, url: travel_multiples_path(@travel), method: :post do |f| %>
+   <%= render 'shared/error_messages', object: f.object %>
+
+   <%= f.label :multiples, "Seleziona una o più immagini" %>
+   <span class="picture">   <%= f.file_field :multiples, multiple: true %> </span>
+
+   <%=f.submit "Aggiungi immagini" , class: "btn btn-primary", id:"bottone"%>
+<% end %>
+
