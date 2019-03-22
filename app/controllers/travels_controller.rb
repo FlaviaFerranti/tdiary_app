@@ -36,7 +36,7 @@ before_action :correct_user, only: :destroy
     private
 
     def travel_params
-    params.require(:travel).permit(:title, :images, :description, :remove_images)
+    params.require(:travel).permit(:title, :images, :description, :remove_images, multiples: [])
     end
 
     def correct_user

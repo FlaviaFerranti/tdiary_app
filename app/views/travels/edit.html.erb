@@ -22,7 +22,21 @@
       <%= f.label 'Seleziona immagine' %><br>
       <%= f.file_field :images, accept: 'image/jpeg,image/gif,image/png' %>
 
-<% end %>
+  <% end %>
+  <% if @travel.multiples? %>
+      <% @travel.multiples.each do |multiple| %>
+          <%= image_tag multiple.url %>
+      <% end %>
+      <%= label_tag :remove_multiples do %>
+        Remove images
+        <%= f.check_box :remove_multiples %>
+      <% end %>
+  <% end %>
+  <br>
+
+  <%= f.label :multiples, "Seleziona una o più immagini" %>
+  <%= f.file_field :multiples, multiple: true %>
+
 
   <%= f.submit "Salva", class: "btn btn-primary", id:"bottone"%>
 <% end %>

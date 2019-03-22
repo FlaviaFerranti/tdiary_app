@@ -38,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'sendgrid-ruby'
 
 # Use ActiveStorage variant
-gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment

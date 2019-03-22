@@ -6,6 +6,8 @@ class Travel < ApplicationRecord
 
   validates :description, length: { maximum: 300 }
   mount_uploader :images, ImagesUploader
+  mount_uploaders :multiples, ImagesUploader
+  serialize :multiples, JSON # If you use SQLite, add this line.
 
   validates_processing_of :images
   validate :image_size_validation

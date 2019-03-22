@@ -3,7 +3,15 @@
 <span class="user"><%= link_to travel.user.name, travel.user %></span>
 <span class="title"><%= travel.title %></span>
 <span class="content"><%= travel.description %>
-<%= image_tag travel.images.url if travel.images? %></span>
+<%= image_tag travel.images.url if travel.images? %>
+<% if travel.multiples? %>
+  <ul>
+    <% travel.multiples.each do |multiple| %>
+      <li><%= link_to(image_tag(multiple.url, alt: 'Image'), multiple.url, target: '_blank') %></li>
+    <% end %>
+  </ul>
+<% end %>
+</span>
 <span class="timestamp">
 Posted <%= time_ago_in_words(travel.created_at) %> ago.
 
