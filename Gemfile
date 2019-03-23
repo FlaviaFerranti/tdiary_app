@@ -11,7 +11,7 @@ gem 'rails', '~> 5.2.2'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'jquery-ui-rails',  '~> 5.0.0'
 #bootstrap per i css
-gem 'bootstrap-sass', '~> 3.2.0.0'
+gem "bootstrap-sass", ">= 3.4.1"
 #ci assicuriamo che un hacker non riesca ad effettuare il login al sito
 gem 'bcrypt', '~> 3.1.7'
 #creazione utenti finti
