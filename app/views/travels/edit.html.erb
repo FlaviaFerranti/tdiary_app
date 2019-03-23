@@ -4,10 +4,13 @@
 <%= form_for(@travel, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label ' Title' %><br>
+  <%= f.label 'Titolo' %><br>
   <%= f.text_field :title, class: 'form-control'%><br>
 
-  <%= f.label 'Description' %><br>
+  <%= f.label 'Luogo' %><br>
+  <%= f.text_field :location, class: 'form-control'%><br>
+
+  <%= f.label 'Descrizione' %><br>
   <%= f.text_area :description, class: 'form-control'%><br>
 
   <div>

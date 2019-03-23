@@ -4,8 +4,9 @@
   <%= f.label :title, "Travel" %>
   <%= f.text_field :title, placeholder: "Inserisci un titolo", class: 'form-control' %> <br>
 
-  <%= f.text_area :description, placeholder: "Inserisci una descrizione", class: 'form-control' %>
+  <%= f.text_field :location, placeholder: "Inserisci un luogo", class: 'form-control' %> <br>
 
+  <%= f.text_area :description, placeholder: "Inserisci una descrizione", class: 'form-control' %>
 
   <span class="picture">
     <%= f.label :multiples, 'Seleziona una o più immagini', accept: 'image/jpeg,image/gif,image/png'%>

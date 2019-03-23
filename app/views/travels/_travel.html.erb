@@ -2,6 +2,7 @@
 <%= link_to gravatar_for(travel.user, size: 50), travel.user %>
 <span class="user"><%= link_to travel.user.name, travel.user %></span>
 <span class="title"><%= travel.title %></span>
+<span class="location"><%= travel.location %></span>
 <span class="content"><%= travel.description %>
 <% if travel.multiples? %>
   <ul>
@@ -19,6 +20,11 @@ Posted <%= time_ago_in_words(travel.created_at) %> ago.
 data: { confirm: "You sure?" } %>
 <%= link_to "modifica", edit_travel_path(travel.id)%>
 <%end%>
+
+<% if current_user.admin? && !current_user?(travel.user) %>
+| <%= link_to "delete", travel, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+<% end %>
 
 
 

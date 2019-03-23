@@ -6,6 +6,7 @@ ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
+
 #jquery
 gem 'jquery-rails', '~> 4.3.1'
 gem 'jquery-ui-rails',  '~> 5.0.0'
@@ -18,6 +19,9 @@ gem 'faker', '~>1.4.2'
 #creare la paginazione per la lista di utenti
 gem 'will_paginate', '~>3.0.7'
 gem 'bootstrap-will_paginate', '~>0.0.10'
+#creazione gem per la localizzazione dei travel
+gem 'geocoder'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server

@@ -36,11 +36,17 @@ before_action :correct_user, only: :destroy
     private
 
     def travel_params
-    params.require(:travel).permit(:title, :images, :description, :remove_images, multiples: [])
+    params.require(:travel).permit(:title, :images, :description, :remove_images, {multiples: []}, :location)
     end
 
     def correct_user
-        @travel = current_user.travels.find_by(id: params[:id])
-        redirect_to root_url if @travel.nil?
+        if current_user.admin?
+            @travel =Travel.find(params[:id])
+            redirect_to root_url if @travel.nil?
+        else
+            @travel = current_user.travels.find_by(id: params[:id])
+            redirect_to root_url if @travel.nil?
+        end
     end
+
 end
