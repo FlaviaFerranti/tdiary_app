@@ -21,6 +21,8 @@ gem 'will_paginate', '~>3.0.7'
 gem 'bootstrap-will_paginate', '~>0.0.10'
 #creazione gem per la localizzazione dei travel
 gem 'geocoder'
+#search bar
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
