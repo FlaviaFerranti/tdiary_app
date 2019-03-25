@@ -14,5 +14,23 @@ User.create!(name: "Amministratore",
              activated: true,
              activated_at: Time.zone.now)
 
+User.create!(name: "Michela Capece",
+             nickname: "michela",
+             email: "michelacapece96@gmail.com",
+             password: "michela",
+             password_confirmation: "michela",
+             admin: false,
+             activated: true,
+             activated_at: Time.zone.now)
+
+User.create!(name: "Flavia Ferranti",
+             nickname: "flavia",
+             email: "fla.ferranti97@gmail.com",
+             password: "flavia",
+             password_confirmation: "flavia",
+             admin: false,
+             activated: true,
+             activated_at: Time.zone.now)
+
 
 
