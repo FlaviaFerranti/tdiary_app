@@ -5,7 +5,13 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result(distinct: true).paginate(page: params[:page])
+
+    if params[:search].present?
+        @travels = Travel.near(params[:search])
+      else
+        @travels = Travel.all
+    end
   end
 
   def show
