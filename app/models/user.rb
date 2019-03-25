@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    devise :omniauthable, omniauth_providers: [:google_oauth2]
     attr_accessor :remember_token, :activation_token, :reset_token
 	before_save :downcase_email
     before_create :create_activation_digest
@@ -93,6 +94,22 @@ class User < ApplicationRecord
     # Returns true if the current user is following the other user.
     def following?(other_user)
         following.include?(other_user)
+    end
+
+    #OAuth Google
+    def self.from_omniauth(auth)
+        data = auth["info"]
+        user = User.where(email: data['email']).first
+        if user
+            user
+        else
+            userr = User.new
+            userr.name = data['name']
+            userr.email = data['email']
+            userr.password = Devise.friendly_token[0,20]
+            userr.save
+            userr
+        end
     end
 
     private
