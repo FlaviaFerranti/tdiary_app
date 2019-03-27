@@ -23,9 +23,6 @@ gem 'bootstrap-will_paginate', '~>0.0.10'
 gem 'geocoder'
 #search bar
 gem 'ransack', github: 'activerecord-hackery/ransack'
-#OAuth Google
-gem 'omniauth-google-oauth2'
-gem 'devise'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
