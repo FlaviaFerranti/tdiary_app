@@ -1,14 +1,14 @@
 <% provide(:title, "Pagina iniziale") %>
 
-<% if logged_in? %>
+<% if user_signed_in? %>
     <div class="row">
         <aside class="col-md-4">
             <section class="user_info">
                 <%= render 'shared/user_info' %>
             </section>
-            <section class="stats">
+            <section class="travel_form">
                 <%= render 'shared/stats' %>
-            </section
+            </section>
             <section class="travel_form">
                 <%= render 'shared/travel_form' %>
             </section>
@@ -28,7 +28,7 @@
     <p>
     Comincia subito!
     </p>
-    <%= link_to "Registrati ora!", signup_path, class: "btn btn-lg btn-primary", id:'bottone' %>
+    <%= link_to "Registrati ora!", new_user_registration_path, class: "btn btn-lg btn-primary", id:'bottone' %>
     </div>
 
 <% end %>

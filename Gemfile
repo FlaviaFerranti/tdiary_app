@@ -24,6 +24,9 @@ gem 'geocoder'
 #search bar
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+#use devise
+gem 'devise'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server

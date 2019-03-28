@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: { confirmations: 'confirmations' }
   root 'static_pages#home'
   get    'help'     => 'static_pages#help'
-  get    'signup'   => 'users#new'
-  get    'login'    => 'sessions#new'
-  post   'login'    => 'sessions#create'
-  delete 'logout'   => 'sessions#destroy'
+  get    'signup'   => 'devise/registrations#new'
+  get    'login'    => 'devise/sessions#new'
+  post   'login'    => 'devise/sessions#create'
+  delete 'logout'   => 'devise/sessions#destroy'
 
   resources :users do
     member do
@@ -17,8 +18,10 @@ Rails.application.routes.draw do
     resources :multiples, :only => [:create, :destroy]
   end
 
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+
+
+  #resources :account_activations, only: [:edit]
+  #resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :relationships, only: [:create, :destroy]
 
