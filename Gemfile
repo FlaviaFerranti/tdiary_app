@@ -23,6 +23,9 @@ gem 'bootstrap-will_paginate', '~>0.0.10'
 gem 'geocoder'
 #search bar
 gem 'ransack', github: 'activerecord-hackery/ransack'
+#OAuth
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 #use devise
 gem 'devise'
