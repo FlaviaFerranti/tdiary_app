@@ -15,6 +15,7 @@ class User < ApplicationRecord
     has_many :followers, through: :passive_relationships, source: :follower
 
     has_many :travels, dependent: :destroy   # per distruggere i travel se un utente viene rimosso
+    has_many :comments
 
     validates :nickname, presence: :true, uniqueness: { case_sensitive: false }
 

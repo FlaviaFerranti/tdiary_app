@@ -14,6 +14,8 @@ class Travel < ApplicationRecord
   validates_processing_of :images
   validate :image_size_validation
 
+  has_many :comments, dependent: :destroy
+
   private
 
   def image_size_validation

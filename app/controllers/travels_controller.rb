@@ -1,6 +1,6 @@
 class TravelsController < ApplicationController
 before_action :authenticate_user!, only: [:create, :destroy, :edit]
-before_action :correct_user, only: :destroy
+before_action :correct_user, only: [:destroy]
 
     def create
         @travel = current_user.travels.build(travel_params)

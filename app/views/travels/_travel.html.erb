@@ -26,7 +26,28 @@ Posted <%= time_ago_in_words(travel.created_at) %> ago.
                                       data: { confirm: "You sure?" } %>
     <% end %>
 <% end %>
+<br>
+This travel has <%= pluralize(travel.comments.count, "Comment") %>
+<% travel.comments.each do |comment| %>
+    <p> <%= link_to comment.user.name, comment.user %>:
+        <%= comment.content %>
+        <% if user_signed_in? %>
+            <% if current_user == comment.user %>
+                <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
+                data: { confirm: "You sure?" } %>
+            <%end%>
+            <% if current_user.admin? && current_user!=comment.user %>
+                | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
+                                              data: { confirm: "You sure?" } %>
+            <% end %>
+        <% end %>
+    </p>
+<% end %>
 
+<%= form_for([travel, travel.comments.build]) do |f| %>
+    <%= f.text_area :content, placeholder: "Write a comment",class: 'form-control' %>
+    <%= f.submit "Reply", class: "btn btn-primary", id:"bottone" %>
+<% end %>
 
 
 </span>
