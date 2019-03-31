@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :travels, only: [:create, :destroy, :edit, :update] do
     resources :multiples, :only => [:create, :destroy]
     resources :comments
+    member do
+        put "like" => 'travels#vote'
+    end
   end
 
 

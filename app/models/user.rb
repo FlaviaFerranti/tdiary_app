@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+    acts_as_voter
 
     has_many :active_relationships, class_name: "Relationship",
                                     foreign_key: "follower_id",

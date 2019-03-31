@@ -1,0 +1,7 @@
+<% if current_user.liked? @travel %>
+    $('.like-btn').removeClass('liked');
+<%else%>
+    $('.like-btn').addClass('like-btn');
+<% end %>
+$('.likes-count').html("<%= @travel.get_upvotes.size %>")
+

@@ -25,8 +25,8 @@ gem 'geocoder'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 #OAuth
 gem 'omniauth-google-oauth2'
-gem 'omniauth-twitter'
-
+#votable
+gem 'acts_as_votable', '~> 0.12.0'
 #use devise
 gem 'devise'
 

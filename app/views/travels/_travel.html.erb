@@ -1,54 +1,61 @@
 <li id="travel-<%= travel.id %>">
-<%= link_to gravatar_for(travel.user, size: 50), travel.user %>
-<span class="user"><%= link_to travel.user.name, travel.user %></span>
-<span class="title"><%= travel.title %></span>
-<span class="location"><%= travel.location %></span>
-<span class="content"><%= travel.description %>
-<% if travel.multiples? %>
-  <ul>
-    <% travel.multiples.each do |multiple| %>
-      <li><%= link_to(image_tag(multiple.thumb.url, alt: 'Image'), multiple.url, target: '_blank') %></li>
+    <%= link_to gravatar_for(travel.user, size: 50), travel.user %>
+    <span class="user"><%= link_to travel.user.name, travel.user %></span>
+    <span class="title"><%= travel.title %></span>
+    <span class="location"><%= travel.location %></span>
+    <span class="content"><%= travel.description %>
+    <% if travel.multiples? %>
+        <% travel.multiples.each do |multiple| %>
+          <%= link_to(image_tag(multiple.thumb.url, alt: 'Image'), multiple.url) %>
+        <% end %>
     <% end %>
-  </ul>
-<% end %>
-</span>
-<span class="timestamp">
-Posted <%= time_ago_in_words(travel.created_at) %> ago.
-<% if user_signed_in? %>
-    <% if current_user == travel.user %>
-    <%= link_to "delete", travel, method: :delete,
-    data: { confirm: "You sure?" } %>
-    <%= link_to "modifica", edit_travel_path(travel.id)%>
-    <%end%>
-
-    <% if current_user.admin? && current_user!=travel.user %>
-    | <%= link_to "delete", travel, method: :delete,
-                                      data: { confirm: "You sure?" } %>
-    <% end %>
-<% end %>
-<br>
-This travel has <%= pluralize(travel.comments.count, "Comment") %>
-<% travel.comments.each do |comment| %>
-    <p> <%= link_to comment.user.name, comment.user %>:
-        <%= comment.content %>
+    </span>
+    <span class="timestamp">
+        Posted <%= time_ago_in_words(travel.created_at) %> ago.
         <% if user_signed_in? %>
-            <% if current_user == comment.user %>
-                <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
-                data: { confirm: "You sure?" } %>
+            <% if current_user == travel.user %>
+            <%= link_to "delete", travel, method: :delete,
+            data: { confirm: "You sure?" } %>
+            <%= link_to "modifica", edit_travel_path(travel.id)%>
             <%end%>
-            <% if current_user.admin? && current_user!=comment.user %>
-                | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
+
+            <% if current_user.admin? && current_user!=travel.user %>
+            | <%= link_to "delete", travel, method: :delete,
                                               data: { confirm: "You sure?" } %>
             <% end %>
         <% end %>
-    </p>
-<% end %>
+    </span>
+    <br>
+</li>
+<li>
+    <%= link_to like_travel_path(travel), class:"like-btn", method: :put, remote: :true do %>
+        <div>
+            <p><i class="glyphicon glyphicon-heart custom"></i>
 
-<%= form_for([travel, travel.comments.build]) do |f| %>
-    <%= f.text_area :content, placeholder: "Write a comment",class: 'form-control' %>
-    <%= f.submit "Reply", class: "btn btn-primary", id:"bottone" %>
-<% end %>
+    <% end %>
 
+    <span class="likes-count"> <%= travel.get_upvotes.size %> </span> </p></div>
 
-</span>
+    <p>This travel has <%= pluralize(travel.comments.count, "Comment") %> </p>
+    <% travel.comments.each do |comment| %>
+        <p> <%= link_to comment.user.name, comment.user %>:
+            <%= comment.content %>
+            <% if user_signed_in? %>
+                <% if current_user == comment.user %>
+                    | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
+                    data: { confirm: "You sure?" } %>
+                <%end%>
+                <% if current_user.admin? && current_user!=comment.user %>
+                    | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
+                                                  data: { confirm: "You sure?" } %>
+                <% end %>
+            <% end %>
+        </p>
+    <% end %>
+
+    <%= form_for([travel, travel.comments.build]) do |f| %>
+        <%= f.text_area :content, placeholder: "Write a comment",class: 'form-control' %>
+        <%= f.submit "Reply", class: "btn btn-primary", id:"bottone" %>
+    <% end %>
+
 </li>

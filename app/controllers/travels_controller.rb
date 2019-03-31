@@ -1,6 +1,7 @@
 class TravelsController < ApplicationController
-before_action :authenticate_user!, only: [:create, :destroy, :edit]
+before_action :authenticate_user!, only: [:create, :destroy, :edit, :vote]
 before_action :correct_user, only: [:destroy]
+respond_to :js, :json, :html
 
     def create
         @travel = current_user.travels.build(travel_params)
@@ -10,6 +11,19 @@ before_action :correct_user, only: [:destroy]
         else
             @feed_items = []
             render 'static_pages/home'
+        end
+    end
+
+    def vote
+        @travel = Travel.find(params[:id])
+        if !current_user.liked? @travel
+            @travel.liked_by current_user
+        elsif current_user.liked? @travel
+            @travel.unliked_by current_user
+        end
+        respond_to do |format|
+            format.html { redirect_back(fallback_location: root_path) }
+            format.js
         end
     end
 

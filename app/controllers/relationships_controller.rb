@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
     before_action :authenticate_user!
+    respond_to :js, :json, :html
 
     def create
         @user = User.find(params[:followed_id])
