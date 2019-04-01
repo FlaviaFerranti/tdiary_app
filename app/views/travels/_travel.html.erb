@@ -3,11 +3,42 @@
     <span class="user"><%= link_to travel.user.name, travel.user, id:"link_barra" %></span>
     <span class="title"><%= travel.title %></span>
     <span class="location"><%= travel.location %></span>
-    <span class="content"><%= travel.description %>
+    <span class="content"><%= travel.description %></span>
+    <span class="title">
     <% if travel.multiples? %>
-        <% travel.multiples.each do |multiple| %>
-          <%= link_to(image_tag(multiple.thumb.url, alt: 'Image'), multiple.url) %>
-        <% end %>
+      <% if travel.multiples.count == 1 %>
+        <%= image_tag(travel.multiples[0].thumb.url, alt: 'Image') %>
+      <%else%>
+        <div class="cont">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <% (1..(travel.multiples.count-1)).each do |number| %>
+                     <li data-target="#myCarousel" data-slide-to="number"></li>
+                  <% end %>
+                </ol>
+                <div class="carousel-inner">
+                    <% travel.multiples.each do |multiple|%>
+                     <% if multiple.url == travel.multiples[0].url %>
+                       <div class="item active"><%= image_tag(travel.multiples[0].thumb.url, alt: 'Image', style:"width:100%;") %></div>
+                     <%else%>
+                      <div class="item">
+                        <%= image_tag(multiple.thumb.url, alt: 'Image', style:"width:100%;") %>
+                      </div>
+                      <%end%>
+                    <% end %>
+                </div>
+                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+      <%end%>
     <% end %>
     </span>
     <span class="timestamp">
@@ -59,3 +90,13 @@
     <% end %>
 
 </li>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+     .cont{
+     width:45%;
+     height:45%;
+     }
+</style>
