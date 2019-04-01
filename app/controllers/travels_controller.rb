@@ -14,6 +14,10 @@ respond_to :js, :json, :html
         end
     end
 
+    def index
+        @travels = current_user.find_up_voted_items
+    end
+
     def vote
         @travel = Travel.find(params[:id])
         if !current_user.liked? @travel

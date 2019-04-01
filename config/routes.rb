@@ -14,18 +14,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :travels, only: [:create, :destroy, :edit, :update] do
+  resources :travels, only: [:create, :destroy, :edit, :update, :index] do
     resources :multiples, :only => [:create, :destroy]
     resources :comments
     member do
         put "like" => 'travels#vote'
     end
   end
-
-
-
-  #resources :account_activations, only: [:edit]
-  #resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :relationships, only: [:create, :destroy]
 

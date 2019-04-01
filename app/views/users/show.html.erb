@@ -11,6 +11,9 @@
         <section class="stats">
             <%= render 'shared/stats' %>
         </section>
+        <section class="travels">
+            <%= button_to "Wish List", travels_path, :method => :get, id:"bottone" %>
+        </section>
     </aside>
     <div class="col-md-8">
         <%= render 'follow_form' if user_signed_in? %>
