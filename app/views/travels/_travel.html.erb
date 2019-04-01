@@ -1,6 +1,6 @@
 <li id="travel-<%= travel.id %>">
     <%= link_to gravatar_for(travel.user, size: 50), travel.user %>
-    <span class="user"><%= link_to travel.user.name, travel.user %></span>
+    <span class="user"><%= link_to travel.user.name, travel.user, id:"link_barra" %></span>
     <span class="title"><%= travel.title %></span>
     <span class="location"><%= travel.location %></span>
     <span class="content"><%= travel.description %>
@@ -15,13 +15,13 @@
         <% if user_signed_in? %>
             <% if current_user == travel.user %>
             <%= link_to "delete", travel, method: :delete,
-            data: { confirm: "You sure?" } %>
-            <%= link_to "change", edit_travel_path(travel.id)%>
+            data: { confirm: "You sure?" }, id:"link_barra" %>
+            <%= link_to "change", edit_travel_path(travel.id), id:"link_barra"%>
             <%end%>
 
             <% if current_user.admin? && current_user!=travel.user %>
             | <%= link_to "delete", travel, method: :delete,
-                                              data: { confirm: "You sure?" } %>
+                                              data: { confirm: "You sure?" }, id:"link_barra" %>
             <% end %>
         <% end %>
     </span>
@@ -38,16 +38,16 @@
 
     <p>This travel has <%= pluralize(travel.comments.count, "Comment") %> </p>
     <% travel.comments.each do |comment| %>
-        <p> <%= link_to comment.user.name, comment.user %>:
+        <p> <%= link_to comment.user.name, comment.user, id:"link_barra"%>:
             <%= comment.content %>
             <% if user_signed_in? %>
                 <% if current_user == comment.user %>
                     | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
-                    data: { confirm: "You sure?" } %>
+                    data: { confirm: "You sure?" } , id:"link_barra" %>
                 <%end%>
                 <% if current_user.admin? && current_user!=comment.user %>
                     | <%= link_to "delete", travel_comment_path(travel, comment), method: :delete,
-                                                  data: { confirm: "You sure?" } %>
+                                                  data: { confirm: "You sure?" }, id:"link_barra" %>
                 <% end %>
             <% end %>
         </p>

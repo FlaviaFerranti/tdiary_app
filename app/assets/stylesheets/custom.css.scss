@@ -246,7 +246,7 @@ span.picture {
             }
         &:hover {
         text-decoration: none;
-        color: blue;
+        color: #20b2aa;
         }
     }
     strong {
@@ -271,5 +271,9 @@ span.picture {
 /*vote*/
 .custom:active {
     color: #ff0000;
+}
+
+.custom{
+    color: #20b2aa;
 }
 
