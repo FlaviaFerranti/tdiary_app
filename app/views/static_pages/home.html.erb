@@ -14,10 +14,12 @@
             </section>
         </aside>
         <div class="col-md-8">
-                <h3>Most popular travel</h3>
-                <ul class = "travels">
-                    <%= render @higest_voted %>
-                </ul>
+                <% if Travel.all != [] %>
+                    <h3>Most popular travel</h3>
+                    <ul class = "travels">
+                        <%= render @higest_voted %>
+                    </ul>
+                <% end %>
 
             <h3>Travel Feed</h3>
             <%= render 'shared/feed' %>
