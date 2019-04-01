@@ -1,16 +1,16 @@
 <% provide(:title, "Modifica travel") %>
 
-<h1>Modifica il tuo travel </h1>
+<h1>Edit your travel </h1>
 <%= form_for(@travel, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label 'Titolo' %><br>
+  <%= f.label 'Title' %><br>
   <%= f.text_field :title, class: 'form-control'%><br>
 
-  <%= f.label 'Luogo' %><br>
+  <%= f.label 'Location' %><br>
   <%= f.text_field :location, class: 'form-control'%><br>
 
-  <%= f.label 'Descrizione' %><br>
+  <%= f.label 'Descripton' %><br>
   <%= f.text_area :description, class: 'form-control'%><br>
 
   <div>
@@ -21,7 +21,7 @@
   </div
   <br>
   <br>
-  <%= f.submit "Salva le modifiche al testo", class: "btn btn-primary", id:"bottone"%>
+  <%= f.submit "Save above changes", class: "btn btn-primary", id:"bottone"%>
 <% end %>
 
 <br>
@@ -29,9 +29,9 @@
 <%= form_for @travel, url: travel_multiples_path(@travel), method: :post do |f| %>
    <%= render 'shared/error_messages', object: f.object %>
 
-   <%= f.label :multiples, "Seleziona una o più immagini" %>
+   <%= f.label :multiples, "Select one or more images" %>
    <span class="picture">   <%= f.file_field :multiples, multiple: true %> </span>
 
-   <%=f.submit "Aggiungi immagini" , class: "btn btn-primary", id:"bottone"%>
+   <%=f.submit "Add images" , class: "btn btn-primary", id:"bottone"%>
 <% end %>
 

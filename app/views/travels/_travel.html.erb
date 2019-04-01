@@ -16,7 +16,7 @@
             <% if current_user == travel.user %>
             <%= link_to "delete", travel, method: :delete,
             data: { confirm: "You sure?" } %>
-            <%= link_to "modifica", edit_travel_path(travel.id)%>
+            <%= link_to "change", edit_travel_path(travel.id)%>
             <%end%>
 
             <% if current_user.admin? && current_user!=travel.user %>

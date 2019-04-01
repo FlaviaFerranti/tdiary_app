@@ -2,17 +2,17 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :title, "Travel" %>
-  <%= f.text_field :title, placeholder: "Inserisci un titolo", class: 'form-control' %> <br>
+  <%= f.text_field :title, placeholder: "Insert title", class: 'form-control' %> <br>
 
-  <%= f.text_field :location, placeholder: "Inserisci un luogo", class: 'form-control' %> <br>
+  <%= f.text_field :location, placeholder: "Insert location", class: 'form-control' %> <br>
 
-  <%= f.text_area :description, placeholder: "Inserisci una descrizione", class: 'form-control' %>
+  <%= f.text_area :description, placeholder: "Insert description", class: 'form-control' %>
 
   <span class="picture">
-    <%= f.label :multiples, 'Seleziona una o più immagini', accept: 'image/jpeg,image/gif,image/png'%>
+    <%= f.label :multiples, 'Select one or more images', accept: 'image/jpeg,image/gif,image/png'%>
     <%= f.file_field :multiples, multiple: true %>
   </span>
-  <%= f.submit "Crea", class: "btn btn-primary", id:"bottone" %>
+  <%= f.submit "Create", class: "btn btn-primary", id:"bottone" %>
 
   <script type="text/javascript">
     $('#travel_multiples').bind('change', function() {
