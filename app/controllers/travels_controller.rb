@@ -4,9 +4,19 @@ before_action :correct_user, only: [:destroy]
 respond_to :js, :json, :html
 
     def create
+        require 'net/http'
         @travel = current_user.travels.build(travel_params)
         if @travel.save
             flash[:success] = "Travel created!"
+            if !@travel.location.blank?
+                url = "https://maps.googleapis.com/maps/api/geocode/json?address="+ @travel.location+"&key=AIzaSyC0fhD6OKoePfBR6GTaT-9wZUYa6AtiOdM"
+                uri = URI(url)
+                response = Net::HTTP.get(uri)
+
+                parsed= JSON.parse(response)
+                @travel.latitude= parsed["results"][0]["geometry"]["location"]["lat"].to_s
+                @travel.longitude= parsed["results"][0]["geometry"]["location"]["lng"].to_s
+            end
             redirect_to root_url
         else
             @feed_items = []
@@ -36,9 +46,19 @@ respond_to :js, :json, :html
     end
 
     def update
+        require 'net/http'
         @travel = Travel.find(params[:id])
         if @travel.update_attributes(travel_params)
             flash[:success] = "Travel updated"
+            if !@travel.location.blank?
+                url = "https://maps.googleapis.com/maps/api/geocode/json?address="+ @travel.location+"&key=AIzaSyC0fhD6OKoePfBR6GTaT-9wZUYa6AtiOdM"
+                uri = URI(url)
+                response = Net::HTTP.get(uri)
+
+                parsed= JSON.parse(response)
+                @travel.latitude= parsed["results"][0]["geometry"]["location"]["lat"].to_s
+                @travel.longitude= parsed["results"][0]["geometry"]["location"]["lng"].to_s
+            end
             redirect_to (current_user)
         else
             render 'edit'
@@ -54,7 +74,7 @@ respond_to :js, :json, :html
     private
 
     def travel_params
-    params.require(:travel).permit(:title, :images, :description, :remove_images, {multiples: []}, :location)
+    params.require(:travel).permit(:title, :images, :description, :remove_images, {multiples: []}, :location, :latitude, :longitude)
     end
 
     def correct_user

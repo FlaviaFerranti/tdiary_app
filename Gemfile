@@ -21,6 +21,7 @@ gem 'will_paginate', '~>3.0.7'
 gem 'bootstrap-will_paginate', '~>0.0.10'
 #creazione gem per la localizzazione dei travel
 gem 'geocoder'
+gem 'google_maps_service'
 #search bar
 gem 'ransack', github: 'activerecord-hackery/ransack'
 #OAuth

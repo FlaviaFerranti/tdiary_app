@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true).paginate(page: params[:page])
 
     if params[:search].present?
-        @travels = Travel.near(params[:search])
+        @travels = Travel.near(params[:search], 500)
       else
         @travels = Travel.all
     end
