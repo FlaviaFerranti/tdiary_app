@@ -6,7 +6,7 @@ class Travel < ApplicationRecord
   default_scope -> { order(created_at: :desc) } #visualizzare post dal più recente al più vecchio
   validates :user_id, presence: true
   validates :title, presence: true, length: {minimum: 2}
-    validates :location, presence: true
+  validates :location, presence: true
   validates :description, length: { maximum: 400 }
   mount_uploader :images, ImagesUploader
   mount_uploaders :multiples, ImagesUploader
