@@ -3,7 +3,8 @@ FactoryBot.define do
 
         email {"admin@admin.it"}
         password {"admin1"}
-        nickname {"username"}
+        nickname {"nickname"}
+        name {"name"}
         id {"1"}
 
   end
