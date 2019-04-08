@@ -3,35 +3,38 @@
 <div class = "col-md-8">
     <div class ="center_users">
         <%= will_paginate %>
+        <div class="div">
+            <h1>Users</h1>
 
-        <h1>Users</h1>
+            <%= search_form_for @q do |f| %>
+                <p>
+                  <%= f.search_field :name_or_nickname_cont, placeholder: "Search users" %>
 
-        <%= search_form_for @q do |f| %>
-
-          <%= f.search_field :name_or_nickname_cont, placeholder: "Search users" %>
-
-          <%= f.submit "Search", id:'bottone' %>
-        <% end %>
-
-
-        <ul class="users">
-                <%= render @users %>
-        </ul>
-
-        <%= will_paginate %>
-
-        <h1>Travels</h1>
-        <%= form_tag users_path, :method => :get do %>
-          <p>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "Search Near", :name => nil, id:"bottone" %>
-          </p>
-        <% end %>
+                  <%= f.submit "Search", id:'bottone' %>
+                </p>
+            <% end %>
 
 
-        <ul class="travels">
-                <%= render @travels %>
-        </ul>
+            <ul class="users">
+                    <%= render @users %>
+            </ul>
+
+            <%= will_paginate %>
+        </div>
+        <div class="div">
+            <h1>Travels</h1>
+            <%= form_tag users_path, :method => :get do %>
+              <p>
+                <%= text_field_tag :search, params[:search] %>
+                <%= submit_tag "Search Near", :name => nil, id:"bottone" %>
+              </p>
+            <% end %>
+
+
+            <ul class="travels">
+                    <%= render @travels %>
+            </ul>
+        </div>
     </div>
 </div>
 
