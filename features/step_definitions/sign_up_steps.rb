@@ -8,7 +8,7 @@ And ("I want to sign up") do
 end
 
 Then("I should be in the sign up path") do
-    page.has_content?("Sign up")
+    expect(page).to have_content("Sign up")
 end
 
 And("I want to fill the form with valid information") do

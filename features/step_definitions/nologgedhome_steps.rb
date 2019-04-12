@@ -3,7 +3,7 @@ Given("I am a visitor") do
 end
 
 And("I have not an account") do
-    page.has_content?("Sign in!")
+    expect(page).to have_content("Sign up!")
 end
 
 Then("I want to be able to register") do

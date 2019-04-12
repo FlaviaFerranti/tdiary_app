@@ -3,7 +3,7 @@ Given("I am a registred user") do
 end
 
 And("I am on the home page") do
-    page.has_content?("Sign up!")
+    expect(page).to have_content("Sign up!")
 end
 
 When /I click on "Log in"/ do
@@ -15,5 +15,6 @@ Then("I am an authenticated user") do
     visit new_user_session_path
     fill_in "user[email]" , :with => @user.email
     fill_in "user[password]", :with => @user.password
-    click_link "Log in"
+    click_button "Log in"
+    expect(page).to have_content(@user.name)
 end
