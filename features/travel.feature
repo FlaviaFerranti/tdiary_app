@@ -4,4 +4,7 @@ Feature: I want to create a travel
 
 Scenario: Create Travel
     Given I am a logged in user
-    When I click on Create
+    When I fill the form with valid information
+    And I click on Create
+    Then I have created a new travel
+
