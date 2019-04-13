@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2019_03_30_194414) do
     t.string "uid"
     t.string "name"
     t.string "nickname"
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

@@ -32,12 +32,10 @@ respond_to :js, :json, :html
         @travel = Travel.find(params[:id])
         if !current_user.liked? @travel
             @travel.liked_by current_user
+            redirect_to request.referrer
         elsif current_user.liked? @travel
             @travel.unliked_by current_user
-        end
-        respond_to do |format|
-            format.html { redirect_back(fallback_location: root_path) }
-            format.js
+            redirect_to request.referrer
         end
     end
 

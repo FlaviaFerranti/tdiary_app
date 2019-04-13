@@ -59,13 +59,14 @@
     <br>
 </li>
 <li>
-    <%= link_to like_travel_path(travel), class:"like-btn", method: :put, remote: :true do %>
-        <div>
-            <p><i class="glyphicon glyphicon-heart custom"></i>
-
+    <%= link_to like_travel_path(travel), class:"like-btn", method: :put do %>
+        <% if current_user.liked? travel %>
+            <i class="glyphicon glyphicon-heart custom"></i>
+        <% else %>
+            <i class="glyphicon glyphicon-heart-empty custom"></i>
+        <% end %>
+        <span class="likes-count"> <%= travel.get_upvotes.size %> </span>
     <% end %>
-
-    <span class="likes-count"> <%= travel.get_upvotes.size %> </span> </p></div>
 
     <p>This travel has <%= pluralize(travel.comments.count, "Comment") %> </p>
     <% travel.comments.each do |comment| %>
@@ -96,7 +97,7 @@
 
 <style>
      .cont{
-     width:45%;
-     height:45%;
+     width:50%;
+     height:50%;
      }
 </style>
