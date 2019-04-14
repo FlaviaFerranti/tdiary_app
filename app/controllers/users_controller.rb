@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true)
 
     if params[:search].present?
-        @travels = Travel.near(params[:search], 500)
+        @travels = Travel.near(params[:search], 50, :order => :distance)
       else
         @travels = Travel.all
     end
