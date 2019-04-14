@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { confirmations: 'confirmations',  omniauth_callbacks: "omniauth_callbacks" }
+
   root 'static_pages#home'
   get    'help'     => 'static_pages#help'
   get    'signup'   => 'devise/registrations#new'

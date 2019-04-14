@@ -30,14 +30,15 @@ class User < ApplicationRecord
 
 
     def self.from_omniauth(auth)
-  where(auth.slice(:provider, :uid)).first_or_create do |user|
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.name = auth.info.name
-    user.nickname = auth.info.email
-    user.email = auth.info.email
+      where(auth.slice(:provider, :uid)).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.nickname = auth.info.email
+        user.email = auth.info.email
+        user.skip_confirmation!
+    end
   end
-end
 
     def self.new_with_session(params, session)
       if session["devise.user_attributes"]
