@@ -3,7 +3,8 @@ class Travel < ApplicationRecord
   belongs_to :user
   geocoded_by :location
   after_validation :geocode, :if => :location_changed?
-  default_scope -> { order(created_at: :desc) } #visualizzare post dal più recente al più vecchio
+  #visualizzare post dal più recente al più vecchio
+  default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :title, presence: true, length: {minimum: 2}
   validates :location, presence: true

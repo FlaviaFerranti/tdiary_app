@@ -10,6 +10,9 @@ end
 When("I fill the form with valid information") do
     fill_in "travel[title]" , :with => "title"
     fill_in "travel[location]" , :with => "Rome"
+    fill_in "travel[description]" , :with => "Stato solo due giorni,
+                                            non bastano per vedere una città
+                                            così ma mi è decisamente piaciuta"
 end
 
 And("I click on Create") do
@@ -18,4 +21,6 @@ end
 
 Then("I have created a new travel") do
     expect(page).to have_content("1 Travel")
+    expect(page).to have_content("title")
+    expect(page).to have_content("Rome")
 end
