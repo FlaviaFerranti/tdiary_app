@@ -75,6 +75,7 @@
     <p>This travel has <%= pluralize(travel.comments.count, "Comment") %> </p>
     <% travel.comments.each do |comment| %>
         <p> <%= link_to comment.user.name, comment.user, id:"link_barra"%>:
+
             <%= comment.content %>
             <% if user_signed_in? %>
                 <% if current_user == comment.user %>
